@@ -3,24 +3,238 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Methdoku Puzzel - Android Game</title>
+    <title>neuraldevarc | Mobile Application Developer</title>
+    <!-- Google Fonts for premium typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            text-align: center;
-            background-color: #121212;
-            color: #ffffff;
-            padding: 80px 20px;
+        :root {
+            --bg-color: #0b0b0f;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --border-color: rgba(255, 255, 255, 0.08);
+            --primary-glow: #7c4dff;
+            --secondary-glow: #00e5ff;
+            --text-main: #ffffff;
+            --text-secondary: #a0aec0;
         }
-        h1 { color: #BB86FC; font-size: 3em; margin-bottom: 10px; }
-        p { font-size: 1.2em; color: #E0E0E0; max-width: 600px; margin: 20px auto; line-height: 1.6; }
-        .footer { margin-top: 100px; font-size: 0.8em; color: #888; }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            justify-content: space-between;
+        }
+
+        /* Sleek Background Gradients */
+        .gradient-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 500px;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(124, 77, 255, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(0, 229, 255, 0.1) 0%, transparent 40%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Container */
+        .container {
+            max-width: 900px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 40px 24px;
+        }
+
+        /* Header Style */
+        header {
+            margin-bottom: 60px;
+            text-align: center;
+        }
+
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 2.2rem;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, var(--text-main) 30%, var(--text-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+
+        .logo span {
+            background: linear-gradient(135deg, var(--primary-glow), var(--secondary-glow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Hero / Headline */
+        .hero {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+            font-weight: 300;
+            line-height: 1.6;
+        }
+
+        /* Glassmorphism Sections */
+        .section-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 40px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            margin-bottom: 40px;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .section-card:hover {
+            transform: translateY(-2px);
+            border-color: rgba(124, 77, 255, 0.3);
+        }
+
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title::before {
+            content: '';
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background-color: var(--primary-glow);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--primary-glow);
+        }
+
+        .section-body {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            line-height: 1.7;
+            font-weight: 300;
+        }
+
+        /* Footer styling */
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding: 40px 0;
+            text-align: center;
+            width: 100%;
+        }
+
+        .footer-text {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.9rem;
+            font-weight: 300;
+        }
+
+        .footer-links {
+            margin-top: 15px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary-glow);
+        }
+
+        /* Responsive Layout modifications */
+        @media (max-width: 600px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            .hero p {
+                font-size: 1.1rem;
+            }
+            .section-card {
+                padding: 24px;
+            }
+        }
     </style>
 </head>
 <body>
-    <h1>Methdoku Puzzel</h1>
-    <p>A beautiful, challenging math and logic puzzle game for Android. Train your brain with daily challenges and unlock new grids!</p>
-    <p>Privacy Policy: Available on Google Play.</p>
-    <div class="footer">© 2026 Methdoku Developer. All rights reserved.</div>
+    <div class="gradient-background"></div>
+
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="logo">neural<span>devarc</span></div>
+        </header>
+
+        <!-- Hero Area -->
+        <main class="hero">
+            <h1>Crafting Premium Mobile Experiences</h1>
+            <p>We build elegant, high-performance, and utility-driven mobile applications and games designed to engage and delight users worldwide.</p>
+        </main>
+
+        <!-- About Studio Card -->
+        <section class="section-card">
+            <h2 class="section-title">Our Philosophy</h2>
+            <div class="section-body">
+                <p>At neuraldevarc, we combine clean system architectures with user-centric interfaces. Every product in our developer portfolio is optimized for speed, built with native components, and aligned with modern security guidelines to deliver top-tier performance.</p>
+            </div>
+        </section>
+
+        <!-- Privacy & Support info card -->
+        <section class="section-card">
+            <h2 class="section-title">Support & Policy</h2>
+            <div class="section-body">
+                <p>We are dedicated to user privacy and reliability. For developer support inquiries, feature recommendations, or policy details regarding any of our published Google Play services, please contact us through our official publishing store listing channels.</p>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container" style="padding: 0 24px;">
+            <p class="footer-text">© 2026 neuraldevarc. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="/app-ads.txt">app-ads.txt</a>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
